@@ -38,6 +38,19 @@ defmodule TheGoodHenry.Model do
   def get_foodstuffs!(id), do: Repo.get!(Foodstuffs, id)
 
   @doc """
+  Gets a list of foodstuffs by type
+
+  ## Examples
+
+      iex> get_foodstuffs_by_type("food")
+      [%Foodstuffs{type: "food"}, ...]
+  """
+  def get_foodstuffs_by_type(type),
+    do:
+      from(f in Foodstuffs, where: f.type == ^type)
+      |> Repo.all()
+
+  @doc """
   Creates a foodstuffs.
 
   ## Examples

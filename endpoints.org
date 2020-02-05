@@ -5,10 +5,38 @@ template http://localhost:8512/api
 Content-Type: application/json
 
 ** GET foodstuffs                                                      :verb:
+# Gets all the foodstuffs
 get /foodstuffs
 
+** GET foodstuff
+# Gets a single foodstuff
+# Foodstuff ID: 40e64ddf-b4ff-4807-a823-6b45b60c6eeb
+get /foodstuffs/40e64ddf-b4ff-4807-a823-6b45b60c6eeb
+
+** GET foodstuff by type
+# Gets a list of foodstuffs by type: drink or food
+# Foodstuff type: drink
+get /foodstuffs?type=drink
+
 ** GET users                                                           :verb:
+# Gets all the users
 get /users
+
+** GET user
+# Gets a single user by id
+# User ID: 388bee0b-d0fc-4fed-9c34-7cb7fb7ab63b
+get /users/388bee0b-d0fc-4fed-9c34-7cb7fb7ab63b
+
+** POST users                                                          :verb:
+post /users
+
+{
+  "user": {
+    "alias": "Cuwano",
+    "name": "Cesar",
+    "tg_id": "12345693874"
+  }
+}
 
 ** GET breakfasts                                                      :verb:
 get /breakfasts

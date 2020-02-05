@@ -17,7 +17,7 @@ config :the_good_henry, TheGoodHenry.Repo,
 # with webpack to recompile .js and .css sources.
 config :the_good_henry, TheGoodHenryWeb.Endpoint,
   http: [port: 8512],
-  debug_errors: true,
+  debug_errors: false,
   code_reloader: true,
   check_origin: false,
   watchers: []

@@ -4,10 +4,15 @@ defmodule TheGoodHenryWeb.FoodstuffsController do
   alias TheGoodHenry.Model
   alias TheGoodHenry.Model.Foodstuffs
 
-  action_fallback TheGoodHenryWeb.FallbackController
+  action_fallback(TheGoodHenryWeb.FallbackController)
 
-  def index(conn, _params) do
-    foodstuffs = Model.list_foodstuffs()
+  def index(conn, params) do
+    foodstuffs =
+      case params["type"] do
+        nil -> Model.list_foodstuffs()
+        type -> Model.get_foodstuffs_by_type(type)
+      end
+
     render(conn, "index.json", foodstuffs: foodstuffs)
   end
 
@@ -28,7 +33,8 @@ defmodule TheGoodHenryWeb.FoodstuffsController do
   def update(conn, %{"id" => id, "foodstuffs" => foodstuffs_params}) do
     foodstuffs = Model.get_foodstuffs!(id)
 
-    with {:ok, %Foodstuffs{} = foodstuffs} <- Model.update_foodstuffs(foodstuffs, foodstuffs_params) do
+    with {:ok, %Foodstuffs{} = foodstuffs} <-
+           Model.update_foodstuffs(foodstuffs, foodstuffs_params) do
       render(conn, "show.json", foodstuffs: foodstuffs)
     end
   end
