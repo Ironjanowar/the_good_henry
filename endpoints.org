@@ -1,0 +1,14 @@
+#+FILETAGS: :verb:
+
+* The Good Henry API
+template http://localhost:8512/api
+Content-Type: application/json
+
+** GET foodstuffs                                                      :verb:
+get /foodstuffs
+
+** GET users                                                           :verb:
+get /users
+
+** GET breakfasts                                                      :verb:
+get /breakfasts
